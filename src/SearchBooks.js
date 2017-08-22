@@ -49,14 +49,9 @@ class SearchBooks extends Component {
       const {query, searchResults} = this.state
       const {OnmoveBookToAnotherShelf,getBookById } = this.props
 
-      let showingBooks = this.state.searchResults;
-      if (showingBooks){
-        console.log("showingBooks:" + showingBooks);
-     }
-     else {
-       console.log("showingBooks may be null:" + showingBooks);
-     }
-      {showingBooks.sort(sortBy('title'))}
+      let showingBooks = searchResults;
+
+      showingBooks.sort(sortBy('title'))
 
 
     return(

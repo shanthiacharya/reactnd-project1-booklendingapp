@@ -21,7 +21,7 @@ class App extends Component {
 
   componentDidMount(){
     BooksAPI.getAll().then((allBooks)=>{
-      console.log(allBooks)
+      // console.log(allBooks)
       this.setState({books:allBooks})
 
     })

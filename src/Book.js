@@ -6,7 +6,7 @@ class Book extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      bookShelf: ""
+      bookshelf: ""
     }
   }
 
@@ -21,17 +21,15 @@ class Book extends Component {
   componentDidMount() {
     const { book, getBookById } = this.props
     let bookOnShelf = getBookById(book.id);
-    console.log(book.id);
+
     let shelf;
     if(bookOnShelf !== null) {
         shelf = bookOnShelf.shelf
-        console.log(shelf);
     } else {
         shelf = 'none'
-        console.log(shelf);
     }
 
-    this.setState({bookShelf: shelf})
+    this.setState({bookshelf: shelf})
 }
 
   render() {
@@ -42,7 +40,7 @@ class Book extends Component {
             <div className="book-top">
                  <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks ? book.imageLinks.thumbnail : ''})`}}>
                    <div className="book-shelf-changer">
-                       <select value = {this.state.bookShelf} onChange =
+                       <select value = {this.state.bookshelf} onChange =
                        {(event) => OnmoveBookToAnotherShelf(event,book)}>
                          <option value="none" disabled>Move to...</option>
                          <option value="currentlyReading">Currently Reading</option>
