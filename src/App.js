@@ -9,27 +9,29 @@ import './App.css';
 
 class App extends Component {
 
-  constructor() {
-    super();
-    this.MoveBookToAnotherShelf = this.MoveBookToAnotherShelf.bind(this);
+  constructor(props) {
+    super(props);
+    this.state = {
+      books :[]
+    }
+    this.moveBookToAnotherShelf = this.moveBookToAnotherShelf.bind(this);
+    this.getBookById =  this.getBookById.bind(this);
   }
-  state = {
-    books :[]
 
-  }
 
   componentDidMount(){
-    BooksAPI.getAll().then((books)=>{
-      this.setState({books})
-       console.log (books)
+    BooksAPI.getAll().then((allBooks)=>{
+      console.log(allBooks)
+      this.setState({books:allBooks})
+
     })
   }
 
 
-  getBookbyId (id) {
+  getBookById(id) {
     let books
     if (this.state.books){
-        books: this.state.books.filter((book)=> (book.id === id) )
+        books = this.state.books.filter((book) => (book.id === id) )
         if (books.length > 0){
           return books[0]
         } else {
@@ -39,7 +41,7 @@ class App extends Component {
    }
 
 
-  MoveBookToAnotherShelf(event, book){
+  moveBookToAnotherShelf(event, book){
     let shelfValue = event.target.value
     BooksAPI.update(book,shelfValue).then(() => {
     book.shelf = shelfValue
@@ -63,15 +65,29 @@ class App extends Component {
 
     return (
       <div className="App">
+
+      <Route path="/searchbooks" render = {({history}) => (
+          <SearchBooks
+              OnmoveBookToAnotherShelf={(event, book)=>{
+              this.moveBookToAnotherShelf (event, book)
+              history.push('/')
+          }}
+          getBookById={this.getBookById}
+
+        />
+      )}/>
+
+
+
         <Route exact path="/" render={() => (
           <div className="list-books">
           <div className="list-books-title">
             <h1>MyReads</h1>
            </div>
           <div className="list-books-content">
-            <ListBooks books = {currentlyReading}  shelfTitle = {"Currently Reading"} onMoveBooktoAnotherShelf = {this.MoveBooktoAnotherShelf} getBookbyId = {this.getBookbyId}/>
-            <ListBooks books = {wantToRead}  shelfTitle = {"Want To Read"} onMoveBooktoAnotherShelf = {this.MoveBooktoAnotherShelf} getBookbyId = {this.getBookbyId}/>
-            <ListBooks books = {read}  shelfTitle = {"Read"} onMoveBooktoAnotherShelf = {this.MoveBooktoAnotherShelf} getBookbyId = {this.getBookbyId}/>
+            <ListBooks books = {currentlyReading}  shelfTitle = {"Currently Reading"} OnmoveBookToAnotherShelf = {this.moveBookToAnotherShelf} getBookById = {this.getBookById}/>
+            <ListBooks books = {wantToRead}  shelfTitle = {"Want To Read"} OnmoveBookToAnotherShelf = {this.moveBookToAnotherShelf} getBookById = {this.getBookById}/>
+            <ListBooks books = {read}  shelfTitle = {"Read"} OnmoveBookToAnotherShelf = {this.moveBookToAnotherShelf} getBookById = {this.getBookById}/>
           </div>
 
 
@@ -79,11 +95,10 @@ class App extends Component {
 
         )}/>
 
-        <Route path="/searchbooks" render = {(history) => (
-            <SearchBooks/>
 
 
-        )}/>
+
+
 
       </div>
     );

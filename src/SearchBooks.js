@@ -3,43 +3,60 @@ import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import * as BooksAPI from './BooksAPI'
 import Book from './Book'
+import sortBy from 'sort-by'
 
 class SearchBooks extends Component {
 
-  static PropTypes = {
-
-  }
-
-  state = {
+  constructor(props) {
+  super(props)
+  this.state = {
     query: '',
     searchResults:[]
   }
+}
+
+  static PropTypes = {
+
+    OnmoveBookToAnotherShelf: PropTypes.func.isRequired,
+  }
+
+
 
   updateQuery = (query) => {
     query = query.trim()
     this.setState ({query})
     if (query !== '') {
         BooksAPI.search(query,20).then((books)=>{
-        this.setState({searchResults: books})
-         console.log ("Search Results:" + this.state.searchResults)
+        books.error ? (this.setState({searchResults: []})) : (this.setState({searchResults: books}))
+        // this.setState({searchResults: books})
+        //  console.log ("Search Results:" + this.state.searchResults)
       })
-
     }
     else {
         this.setState({searchResults:[]})
-    }
 
+    }
   }
+
+
 
   clearQuery = () => {
     this.setState ({query:''})
   }
 
   render() {
+
       const {query, searchResults} = this.state
+      const {OnmoveBookToAnotherShelf,getBookById } = this.props
 
-
-
+      let showingBooks = this.state.searchResults;
+      if (showingBooks){
+        console.log("showingBooks:" + showingBooks);
+     }
+     else {
+       console.log("showingBooks may be null:" + showingBooks);
+     }
+      {showingBooks.sort(sortBy('title'))}
 
 
     return(
@@ -62,7 +79,11 @@ class SearchBooks extends Component {
           </div>
           <div className="search-books-results">
             <ol className="books-grid">
-            {searchResults.map ((book) => (<li key={book.id}> <Book book={book ? book :null} /> </li>
+
+            {showingBooks.map ((book) => (
+              <Book key={book.id} book={book ? book :null} OnmoveBookToAnotherShelf = {OnmoveBookToAnotherShelf}
+                getBookById = {getBookById} />
+
               )
             )}
 
