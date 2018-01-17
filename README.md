@@ -4,6 +4,8 @@ Book Tracking Application
 - Bookshelf app that allows to select and categorize books. (Read, Currently Reading, or Want to Read)
 - Search for a book and categorize (Read, Currently Reading, or Want to Read)
 
+# Screenshots
+
 To run the app locally:
 
 ```bash
