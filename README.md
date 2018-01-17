@@ -7,14 +7,16 @@ Book Tracking Application
 # Screenshots
 
 ## Main Page 
-
+![react app](https://user-images.githubusercontent.com/11092669/35052218-ed895e80-fb5b-11e7-9280-bc195248e22d.png)
 
 
 ## Search Page
+![react app-search](https://user-images.githubusercontent.com/11092669/35052221-eef31c20-fb5b-11e7-9017-424a9a2fa322.png)
+
 
 
 ## Categorize the book from Search Page
-
+<img width="1249" alt="react app-search-menu" src="https://user-images.githubusercontent.com/11092669/35052270-05368b02-fb5c-11e7-9e42-62461ffafe13.png">
 
 To run the app locally:
 
