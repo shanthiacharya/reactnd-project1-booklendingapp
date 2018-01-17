@@ -1,8 +1,15 @@
 # React Nanodegree Project-1- Book Lending App
 
-Book Tracking Application
-- Bookshelf app that allows to select and categorize books. (Read, Currently Reading, or Want to Read)
-- Search for a book and categorize (Read, Currently Reading, or Want to Read)
+This a Book Tracking Application built with reactjs [https://reactjs.org/] 
+
+# Features
+* Main Page - Shows the Bookshelf that allows to select and categorize books. (Read, Currently Reading, or Want to Read)
+* Search Page - Search for a book and add it to the bookshelf (Read, Currently Reading, or Want to Read)
+
+# Developer with
+* [React JS](https://reactjs.org/)  
+* [React Router](https://www.npmjs.com/package/react-router-dom)
+* [Udacity BookLender API](https://reactnd-books-api.udacity.com/)
 
 # Screenshots
 
@@ -11,11 +18,6 @@ Book Tracking Application
 
 
 ## Search Page
-![react app-search](https://user-images.githubusercontent.com/11092669/35052221-eef31c20-fb5b-11e7-9017-424a9a2fa322.png)
-
-
-
-## Categorize the book from Search Page
 <img width="1249" alt="react app-search-menu" src="https://user-images.githubusercontent.com/11092669/35052270-05368b02-fb5c-11e7-9e42-62461ffafe13.png">
 
 To run the app locally:
