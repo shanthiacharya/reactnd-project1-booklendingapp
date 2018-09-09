@@ -6,7 +6,7 @@ This a Book Tracking Application built with reactjs [https://reactjs.org/]
 * Main Page - Shows the Bookshelf that allows to select and categorize books. (Read, Currently Reading, or Want to Read)
 * Search Page - Search for a book and add it to the bookshelf (Read, Currently Reading, or Want to Read)
 
-# Developer with
+# Developed with
 * [React JS](https://reactjs.org/)  
 * [React Router](https://www.npmjs.com/package/react-router-dom)
 * [Udacity BookLender API](https://reactnd-books-api.udacity.com/)
